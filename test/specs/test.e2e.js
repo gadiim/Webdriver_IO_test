@@ -224,7 +224,7 @@
 
 // describe('Webdriver_IO_test main page', () => {
 
-//     it('should show if an element is clickable', async () => { 
+//     xit('should show if an element is clickable', async () => { 
 //         await browser.url('https://webdriver.io');
 
 //         const blogButton = await $('.button[href=\'/docs/gettingstarted\']');
@@ -233,7 +233,7 @@
         
 //     });
 
-//     it('should show if an element is displayed', async () => { 
+//     xit('should show if an element is displayed', async () => { 
 //         await browser.url('https://webdriver.io');
 
 //         const blogButton = await $('.button[href=\'/docs/gettingstarted\']');
@@ -245,7 +245,7 @@
 //         await browser.url('https://webdriver.io');
 
 //         const blogButton = await $('.button[href="/docs/gettingstarted"]');
-//         let displayedInViewport = await blogButton.isDisplayed();
+//         let displayedInViewPort = await blogButton.isDisplayed();//isDisplayedWithinViewport
 //         console.log('Is blog button displayed in isDisplayed: ' + displayedInViewport);// outputs: true   
 //     });
 // });
@@ -289,17 +289,74 @@
 // });
 /////////////////////////////////////////////////////////////////////////////
 ////Lesson #11 Webdriver.io Methods saveScreenshot(), newWindow() and switchWindow()
-import { expect } from '@wdio/globals'
+// import { expect } from '@wdio/globals'
 
-describe('Webdriver_IO_test main page', () => {
+// describe('Webdriver_IO_test main page', () => {
 
-    it('should show save screenshot command', async () => { 
-        await browser.url('https://webdriver.io');
+//     xit('should show save screenshot command', async () => { 
+//         await browser.url('https://webdriver.io');
 
-        const getStartedLink = await $('.footer__link-item[href=\'/docs/gettingstarted\']');
-        await browser.pause(2000);
-        await getStartedLink.scrollIntoView();
-        await browser.pause(2000);  
-        await getStartedLink.saveScreenshot('linkScreenshot.png');
-    });
-});
+//         const getStartedLink = await $('.footer__link-item[href=\'/docs/gettingstarted\']');
+//         await browser.pause(2000);
+//         await getStartedLink.scrollIntoView();
+//         await browser.pause(2000);  
+//         await getStartedLink.saveScreenshot('linkScreenshot.png');
+//     });
+
+//     it('should switch to another window', async () => { 
+//         await browser.url('https://webdriver.io');
+
+//         await browser.newWindow('https://google.com');
+//         await browser.pause(2000);
+
+//         await browser.switchWindow('https://webdriver.io');
+//         await browser.pause(2000);
+//     });
+// });
+/////////////////////////////////////////////////////////////////////////////
+////Lesson #12 Webdriver.io Methods getHtml() and waitUntil()
+// import { expect } from '@wdio/globals'
+
+// describe('Webdriver_IO_test main page', () => {
+
+//     xit('should show wait untill command', async () => {
+//         await browser.url('https://webdriver.io');
+
+//         await browser.waitUntil(async () => {
+//             return $('.button[href=\'/docs/gettingstarted\']').isDisplayed();
+//         }, 5000, 'Button is not displayed');
+//     });
+
+//     it('should get html for certain elements', async () => {
+//         await browser.url('https://webdriver.io');
+
+//         const outerHTML = await $('.dropdown__menu').getHTML();
+//         console.log('outerHTML: ' + outerHTML);
+
+//         const innerHTML = await $('.dropdown__menu').getHTML(false);
+//         console.log('innerHTML: ' + innerHTML);
+//     });
+// });
+/////////////////////////////////////////////////////////////////////////////
+////Lesson #13 Webdriver.io Home work
+//v// зайти на Webdriver.io => API
+//v// перевірити url Webdriver.io/docs/api
+//v// перевірити заголовок <h1>Introduction
+//v// перевірити breadcrumbs
+//v// перевірити WebDriver на актуальність посилання
+// // =>Search
+// // input => 'all is done'
+// // видалення напису 'all is done'
+// import { expect } from '@wdio/globals'
+
+// describe('Webdriver.io HomeWork', () => {
+//         it('should get html for certain elements', async () => {
+//         await browser.url('https://webdriver.io');
+
+//         const outerHTML = await $('.dropdown__menu').getHTML();
+//         console.log('outerHTML: ' + outerHTML);
+
+//         const innerHTML = await $('.dropdown__menu').getHTML(false);
+//         console.log('innerHTML: ' + innerHTML);
+//     });
+// });
