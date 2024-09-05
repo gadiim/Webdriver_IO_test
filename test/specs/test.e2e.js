@@ -323,7 +323,7 @@
 //         await browser.url('https://webdriver.io');
 
 //         await browser.waitUntil(async () => {
-//             return $('.button[href=\'/docs/gettingstarted\']').isDisplayed();
+//             return await $('.button[href=\'/docs/gettingstarted\']').isDisplayed();
 //         }, 5000, 'Button is not displayed');
 //     });
 
@@ -345,8 +345,8 @@
 //v// в футері перевірити чи відображається Blog (isDisplayed())
 //v// перевірити чи відображається посилання Protocol Commands (isDisplayed())
 //v// перевірити чи активне посилання Protocol Commands (isClickable())
-// // перейти (click) за посилання Protocol Commands
-// // дочекатись (waitUntil()) на заголовок WebDriver Protocol
+//v// перейти (click) за посилання Protocol Commands
+//v// дочекатись (waitUntil()) на заголовок WebDriver Protocol
 //import { expect } from '@wdio/globals'
 
 describe('Webdriver.io HomeWork', () => {
@@ -357,7 +357,7 @@ describe('Webdriver.io HomeWork', () => {
         await apiButton.click();
         // await browser.pause(1000);
 
-        const currentUrl = await browser.getUrl();
+        let currentUrl = await browser.getUrl();
         // await browser.pause(1000);
         console.log('currentUrl: ' + currentUrl);
 
@@ -368,18 +368,29 @@ describe('Webdriver.io HomeWork', () => {
 
         const blogButton = await $('a[href=\'/blog\']');
         let displayed = await blogButton.isDisplayed();
-        await browser.pause(2000);
+        await browser.pause(1000);
         console.log('blogButton is displayed: ' + displayed);                      // outputs: true   
 
         const paginationLink = await $('.pagination-nav__label');
         displayed = await paginationLink.isDisplayed();
-        await browser.pause(2000);
         console.log('pagination-nav__label is displayed: ' + displayed);            // outputs: true   
-        // await paginationLink.click();
-        // await browser.pause(2000);
+        await browser.pause(1000);
 
         let clickable = await paginationLink.isClickable();
-        console.log('Is clickable: ' + clickable);                                  // outputs: true
+        console.log('pagination-nav__label is clickable: ' + clickable);                                  // outputs: true
+        await paginationLink.click();                                               // перейти (click) за посилання Protocol Commands
         await browser.pause(2000);
+
+        currentUrl = await browser.getUrl();
+        console.log('currentUrl: ' + currentUrl);
+
+        await browser.waitUntil(async () => {
+            return await $('h2:first-of-type').isDisplayed();                       // дочекатись (waitUntil()) на заголовок WebDriver Protocol
+        }, 5000, 'Element is not displayed');
+
+        const headerText = await $('h2:first-of-type').getText();
+        console.log('Header text is: ' + headerText);
     });
 });
+/////////////////////////////////////////////////////////////////////////////
+////Lesson #14 Webdriver.io Locators part 1
