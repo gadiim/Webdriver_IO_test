@@ -219,33 +219,81 @@
 //     });
 // });
 /////////////////////////////////////////////////////////////////////////////
-////Lesson #9 Webdriver.io Method isDisplayed() and isClickable()
+////Lesson #9 Webdriver.io Methods isEnabled(), isFocused() and scrolIntoView()
+// import { expect } from '@wdio/globals'
+
+// describe('Webdriver.io HomeWork', () => {
+
+//     it('should show if an element is clickable', async () => { 
+//         await browser.url('https://webdriver.io');
+
+//         const blogButton = await $('.button[href=\'/docs/gettingstarted\']');
+//         let clickable = await blogButton.isClickable();
+//         console.log('Is clickable: ' + clickable);          // outputs: true
+        
+//     });
+
+//     it('should show if an element is displayed', async () => { 
+//         await browser.url('https://webdriver.io');
+
+//         const blogButton = await $('.button[href=\'/docs/gettingstarted\']');
+//         let displayed = await blogButton.isDisplayed();
+//         console.log('Is displayed: ' + displayed);          // outputs: true   
+//     });
+
+//     it('should show if an element is visible', async () => { 
+//         await browser.url('https://webdriver.io');
+
+//         const blogButton = await $('.button[href="/docs/gettingstarted"]');
+//         let displayedInViewport = await blogButton.isDisplayed();
+//         console.log('Is blog button displayed in isDisplayed: ' + displayedInViewport);// outputs: true   
+//     });
+// });
+/////////////////////////////////////////////////////////////////////////////
+////Lesson #10 Webdriver.io Method isDisplayed() and isClickable()
+// import { expect } from '@wdio/globals'
+
+// describe('Webdriver.io HomeWork', () => {
+
+//     xit('should show if an element is clickable', async () => { 
+//         await browser.url('https://webdriver.io');
+
+//         const getStartedButton = await $('.button[href=\'/docs/gettingstarted\']')
+//         let isEnabled = await getStartedButton.isEnabled();
+//         console.log('Is get started button enabled: ' + isEnabled);       // outputs: true 
+//     });
+
+//     xit('should show if an element is focused', async () => {
+//         await browser.url('https://webdriver.io');
+
+//         const getStartedButton = await $('.button[href=\'/docs/gettingstarted\']')
+//         let isFocusedBeforeClick = await getStartedButton.isFocused();
+//         console.log('Is get started button focused before click: ' + isFocusedBeforeClick);       // outputs: false 
+//         await browser.pause(2000);
+//         await getStartedButton.click();
+
+//         let isFocusedAfterClick = await getStartedButton.isFocused();
+//         console.log('Is get started button focused after click: ' + isFocusedAfterClick); // outputs: true 
+
+//         await browser.pause(2000);
+//     });
+
+//     it('should show movement to element action', async () => { 
+//         await browser.url('https://webdriver.io');
+
+//         const getStartedLink = await $('.footer__link-item[href=\'/docs/gettingstarted\']')
+//         await browser.pause(2000);
+//         await getStartedLink.scrollIntoView();
+//         await browser.pause(2000);    
+//     });
+// });
+/////////////////////////////////////////////////////////////////////////////
+////Lesson #11 Webdriver.io Method isDisplayed() and isClickable()
 import { expect } from '@wdio/globals'
 
 describe('Webdriver.io HomeWork', () => {
 
-    it('should show if an element is clickable', async () => { 
+    xit('should show if an element is clickable', async () => { 
         await browser.url('https://webdriver.io');
-
-        const blogButton = await $('.button[href=\'/docs/gettingstarted\']');
-        let clickable = await blogButton.isClickable();
-        console.log('Is clickable: ' + clickable);          // outputs: true
-        
-    });
-
-    it('should show if an element is displayed', async () => { 
-        await browser.url('https://webdriver.io');
-
-        const blogButton = await $('.button[href=\'/docs/gettingstarted\']');
-        let displayed = await blogButton.isDisplayed();
-        console.log('Is displayed: ' + displayed);          // outputs: true   
-    });
-
-    it('should show if an element is visible', async () => { 
-        await browser.url('https://webdriver.io');
-
-        const blogButton = await $('.button[href="/docs/gettingstarted"]');
-        let displayedInViewport = await blogButton.isDisplayed();
-        console.log('Is blog button displayed in isDisplayed: ' + displayedInViewport);// outputs: true   
     });
 });
