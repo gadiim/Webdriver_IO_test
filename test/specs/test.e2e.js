@@ -222,7 +222,7 @@
 ////Lesson #9 Webdriver.io Methods isEnabled(), isFocused() and scrolIntoView()
 // import { expect } from '@wdio/globals'
 
-// describe('Webdriver.io HomeWork', () => {
+// describe('Webdriver_IO_test main page', () => {
 
 //     it('should show if an element is clickable', async () => { 
 //         await browser.url('https://webdriver.io');
@@ -253,7 +253,7 @@
 ////Lesson #10 Webdriver.io Method isDisplayed() and isClickable()
 // import { expect } from '@wdio/globals'
 
-// describe('Webdriver.io HomeWork', () => {
+// describe('Webdriver_IO_test main page', () => {
 
 //     xit('should show if an element is clickable', async () => { 
 //         await browser.url('https://webdriver.io');
@@ -288,12 +288,18 @@
 //     });
 // });
 /////////////////////////////////////////////////////////////////////////////
-////Lesson #11 Webdriver.io Method isDisplayed() and isClickable()
+////Lesson #11 Webdriver.io Methods saveScreenshot(), newWindow() and switchWindow()
 import { expect } from '@wdio/globals'
 
-describe('Webdriver.io HomeWork', () => {
+describe('Webdriver_IO_test main page', () => {
 
-    xit('should show if an element is clickable', async () => { 
+    it('should show save screenshot command', async () => { 
         await browser.url('https://webdriver.io');
+
+        const getStartedLink = await $('.footer__link-item[href=\'/docs/gettingstarted\']');
+        await browser.pause(2000);
+        await getStartedLink.scrollIntoView();
+        await browser.pause(2000);  
+        await getStartedLink.saveScreenshot('linkScreenshot.png');
     });
 });
