@@ -150,71 +150,102 @@
 // // =>Search
 // // input => 'all is done'
 // // видалення напису 'all is done'
+// import { expect } from '@wdio/globals'
+
+// describe('Webdriver.io HomeWork', () => {
+
+//     xit('should have correct url', async () => {        // перевірити url Webdriver.io/docs/api
+//         await browser.url('https://webdriver.io/docs/api')
+
+//         // const _title = await browser.getTitle();
+//         const _url = await browser.getUrl();
+//         await browser.pause(1000);
+//         // console.log(_title);
+//         console.log(_url);
+//         // await expect(browser).toHaveUrl('https://webdriver.io/docs/api/')
+//         // await expect(browser).toHaveTitle('Introduction | WebdriverIO')
+//     });
+
+//     xit('shoud show Introduction', async () => {        // перевірити заголовок Introduction
+//         await browser.url('https://webdriver.io/docs/api');
+
+//         let _header = await $('h1');
+//         await browser.pause(1000);
+//         console.log('Header text is: ' + await _header.getText());
+//     });
+
+//     xit('shoud show breadcrumbs', async () =>  {         // перевірити breadcrumbs
+//         await browser.url('https://webdriver.io/docs/api');
+
+//         let _breadcrumb = await $('.breadcrumbs__link');
+//         await browser.pause(1000);
+//         console.log('Breadcrumb text is: ' + await _breadcrumb.getText());
+//     });
+
+//     xit('shoud show WebDriver_link', async () => {      // перевірити WebDriver на актуальність посилання
+//         await browser.url('https://webdriver.io/docs/api');
+
+//         let _element = await $('#__docusaurus_skipToContent_fallback > div > div > main > div > div > div > div > article > div.theme-doc-markdown.markdown > p:nth-child(2) > a:nth-child(1)');
+//         console.log('Element text is: ' + await _element.getText());
+//         await _element.click();
+        
+//         console.log('Element`s url is: ' + await browser.getUrl());
+//         await expect(browser).toHaveUrl('https://webdriver.io/docs/api/webdriver');
+//     });
+
+//     it('shoud show search', async () => {               // input => 'all is done'
+//         await browser.url('https://webdriver.io');
+
+//         const searchButton = await browser.$('#__docusaurus > nav > div.navbar__inner > div.navbar__items.navbar__items--right > div.navbarSearchContainer_GLVs > button');
+//         await searchButton.click();
+    
+
+//         const searchInput = await browser.$('input[type="search"]');
+//         await searchInput.setValue('all is done');
+    
+//         let value = await searchInput.getValue();
+//         console.log('TEST_1 Value attribute is: ', value);
+    
+//         await searchInput.addValue('!!!');
+    
+//         value = await searchInput.getValue();
+//         console.log('TEST_2 Value attribute is: ', value);
+
+//         // await searchInput.setValue('');
+//         await searchInput.clearValue();
+
+//         value = await searchInput.getValue();
+//         console.log('TEST_3 Value attribute is: ', value);
+//     });
+// });
+/////////////////////////////////////////////////////////////////////////////
+////Lesson #9 Webdriver.io Method isDisplayed() and isClickable()
 import { expect } from '@wdio/globals'
 
 describe('Webdriver.io HomeWork', () => {
 
-    xit('should have correct url', async () => {        // перевірити url Webdriver.io/docs/api
-        await browser.url('https://webdriver.io/docs/api')
-
-        // const _title = await browser.getTitle();
-        const _url = await browser.getUrl();
-        await browser.pause(1000);
-        // console.log(_title);
-        console.log(_url);
-        // await expect(browser).toHaveUrl('https://webdriver.io/docs/api/')
-        // await expect(browser).toHaveTitle('Introduction | WebdriverIO')
-    });
-
-    xit('shoud show Introduction', async () => {        // перевірити заголовок Introduction
-        await browser.url('https://webdriver.io/docs/api');
-
-        let _header = await $('h1');
-        await browser.pause(1000);
-        console.log('Header text is: ' + await _header.getText());
-    });
-
-    xit('shoud show breadcrumbs', async () => {    // перевірити breadcrumbs
-        await browser.url('https://webdriver.io/docs/api');
-
-        let _breadcrumb = await $('.breadcrumbs__link');
-        await browser.pause(1000);
-        console.log('Breadcrumb text is: ' + await _breadcrumb.getText());
-    });
-
-    xit('shoud show WebDriver_link', async () => {    // перевірити WebDriver на актуальність посилання
-        await browser.url('https://webdriver.io/docs/api');
-
-        let _element = await $('#__docusaurus_skipToContent_fallback > div > div > main > div > div > div > div > article > div.theme-doc-markdown.markdown > p:nth-child(2) > a:nth-child(1)');
-        console.log('Element text is: ' + await _element.getText());
-        await _element.click();
-        
-        console.log('Element`s url is: ' + await browser.getUrl());
-        await expect(browser).toHaveUrl('https://webdriver.io/docs/api/webdriver');
-    });
-
-    it('shoud show search', async () => {    // input => 'all is done'
+    it('should show if an element is clickable', async () => { 
         await browser.url('https://webdriver.io');
 
-        const searchButton = await browser.$('#__docusaurus > nav > div.navbar__inner > div.navbar__items.navbar__items--right > div.navbarSearchContainer_GLVs > button');
-        await searchButton.click();
-    
+        const blogButton = await $('.button[href=\'/docs/gettingstarted\']');
+        let clickable = await blogButton.isClickable();
+        console.log('Is clickable: ' + clickable);          // outputs: true
+        
+    });
 
-        const searchInput = await browser.$('input[type="search"]');
-        await searchInput.setValue('all is done');
-    
-        let value = await searchInput.getValue();
-        console.log('TEST_1 Value attribute is: ', value);
-    
-        await searchInput.addValue('!!!');
-    
-        value = await searchInput.getValue();
-        console.log('TEST_2 Value attribute is: ', value);
+    it('should show if an element is displayed', async () => { 
+        await browser.url('https://webdriver.io');
 
-        // await searchInput.setValue('');
-        await searchInput.clearValue();
+        const blogButton = await $('.button[href=\'/docs/gettingstarted\']');
+        let displayed = await blogButton.isDisplayed();
+        console.log('Is displayed: ' + displayed);          // outputs: true   
+    });
 
-        value = await searchInput.getValue();
-        console.log('TEST_3 Value attribute is: ', value);
+    it('should show if an element is visible', async () => { 
+        await browser.url('https://webdriver.io');
+
+        const blogButton = await $('.button[href="/docs/gettingstarted"]');
+        let displayedInViewport = await blogButton.isDisplayed();
+        console.log('Is blog button displayed in isDisplayed: ' + displayedInViewport);// outputs: true   
     });
 });
