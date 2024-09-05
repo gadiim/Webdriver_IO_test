@@ -147,9 +147,9 @@
 //v// перевірити заголовок <h1>Introduction
 //v// перевірити breadcrumbs
 //v// перевірити WebDriver на актуальність посилання
-// // =>Search
-// // input => 'all is done'
-// // видалення напису 'all is done'
+//v// =>Search
+//v// input => 'all is done'
+//v// видалення напису 'all is done'
 // import { expect } from '@wdio/globals'
 
 // describe('Webdriver.io HomeWork', () => {
@@ -188,7 +188,7 @@
 //         let _element = await $('#__docusaurus_skipToContent_fallback > div > div > main > div > div > div > div > article > div.theme-doc-markdown.markdown > p:nth-child(2) > a:nth-child(1)');
 //         console.log('Element text is: ' + await _element.getText());
 //         await _element.click();
-        
+
 //         console.log('Element`s url is: ' + await browser.getUrl());
 //         await expect(browser).toHaveUrl('https://webdriver.io/docs/api/webdriver');
 //     });
@@ -198,16 +198,16 @@
 
 //         const searchButton = await browser.$('#__docusaurus > nav > div.navbar__inner > div.navbar__items.navbar__items--right > div.navbarSearchContainer_GLVs > button');
 //         await searchButton.click();
-    
+
 
 //         const searchInput = await browser.$('input[type="search"]');
 //         await searchInput.setValue('all is done');
-    
+
 //         let value = await searchInput.getValue();
 //         console.log('TEST_1 Value attribute is: ', value);
-    
+
 //         await searchInput.addValue('!!!');
-    
+
 //         value = await searchInput.getValue();
 //         console.log('TEST_2 Value attribute is: ', value);
 
@@ -219,7 +219,7 @@
 //     });
 // });
 /////////////////////////////////////////////////////////////////////////////
-////Lesson #9 Webdriver.io Methods isEnabled(), isFocused() and scrolIntoView()
+////Lesson #9 Webdriver.io Methods isDisplayed() and isClickable()
 // import { expect } from '@wdio/globals'
 
 // describe('Webdriver_IO_test main page', () => {
@@ -230,7 +230,7 @@
 //         const blogButton = await $('.button[href=\'/docs/gettingstarted\']');
 //         let clickable = await blogButton.isClickable();
 //         console.log('Is clickable: ' + clickable);          // outputs: true
-        
+
 //     });
 
 //     xit('should show if an element is displayed', async () => { 
@@ -250,7 +250,7 @@
 //     });
 // });
 /////////////////////////////////////////////////////////////////////////////
-////Lesson #10 Webdriver.io Method isDisplayed() and isClickable()
+////Lesson #10 Webdriver.io Methods isEnabled(), isFocused() and scrolIntoView()
 // import { expect } from '@wdio/globals'
 
 // describe('Webdriver_IO_test main page', () => {
@@ -340,23 +340,46 @@
 /////////////////////////////////////////////////////////////////////////////
 ////Lesson #13 Webdriver.io Home work
 //v// зайти на Webdriver.io => API
-//v// перевірити url Webdriver.io/docs/api
-//v// перевірити заголовок <h1>Introduction
-//v// перевірити breadcrumbs
-//v// перевірити WebDriver на актуальність посилання
-// // =>Search
-// // input => 'all is done'
-// // видалення напису 'all is done'
-// import { expect } from '@wdio/globals'
+//v// тег nav a[href="/docs/api"]
+//v// скрол до футера
+//v// в футері перевірити чи відображається Blog (isDisplayed())
+//v// перевірити чи відображається посилання Protocol Commands (isDisplayed())
+//v// перевірити чи активне посилання Protocol Commands (isClickable())
+// // перейти (click) за посилання Protocol Commands
+// // дочекатись (waitUntil()) на заголовок WebDriver Protocol
+//import { expect } from '@wdio/globals'
 
-// describe('Webdriver.io HomeWork', () => {
-//         it('should get html for certain elements', async () => {
-//         await browser.url('https://webdriver.io');
+describe('Webdriver.io HomeWork', () => {
+    it('should get html for certain elements', async () => {
+        await browser.url('https://webdriver.io');
 
-//         const outerHTML = await $('.dropdown__menu').getHTML();
-//         console.log('outerHTML: ' + outerHTML);
+        const apiButton = await browser.$('nav a[href="/docs/api"]');   // зайти на Webdriver.io => API
+        await apiButton.click();
+        // await browser.pause(1000);
 
-//         const innerHTML = await $('.dropdown__menu').getHTML(false);
-//         console.log('innerHTML: ' + innerHTML);
-//     });
-// });
+        const currentUrl = await browser.getUrl();
+        // await browser.pause(1000);
+        console.log('currentUrl: ' + currentUrl);
+
+        const footer = await $('footer')                                // скрол до футера
+        // await browser.pause(1000);
+        await footer.scrollIntoView();
+        // await browser.pause(1000);
+
+        const blogButton = await $('a[href=\'/blog\']');
+        let displayed = await blogButton.isDisplayed();
+        await browser.pause(2000);
+        console.log('blogButton is displayed: ' + displayed);                      // outputs: true   
+
+        const paginationLink = await $('.pagination-nav__label');
+        displayed = await paginationLink.isDisplayed();
+        await browser.pause(2000);
+        console.log('pagination-nav__label is displayed: ' + displayed);            // outputs: true   
+        // await paginationLink.click();
+        // await browser.pause(2000);
+
+        let clickable = await paginationLink.isClickable();
+        console.log('Is clickable: ' + clickable);                                  // outputs: true
+        await browser.pause(2000);
+    });
+});
