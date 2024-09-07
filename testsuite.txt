@@ -1,0 +1,35 @@
+Test Suite:                 GitHub Login Page
+
+Test Suite ID:              TS001
+
+Title:                      GitHub Login Page Test Suite
+
+Description:                This test suite is designed to verify the functionality of the login page on GitHub. 
+                            It includes multiple test cases to ensure that the login input fields and the “Sign up” button are displayed and function correctly.
+
+Preconditions:
+
+-   The user is on the GitHub login page (https://github.com/login).
+
+Test Cases:
+
+1   Test Case ID:           TC001
+    -   Title:              Verify Login Input Field Display
+    -   Description:        Verify that the login input field is displayed on the login page.
+    -   Expected Result:    The login input field is displayed.
+2   Test Case ID:           TC002
+    -   Title:              Verify Password Input Field Display
+    -   Description:        Verify that the password input field is displayed on the login page.
+    -   Expected Result:    The password input field is displayed.
+3   Test Case ID:           TC003
+    -   Title:              Verify Login Input Acceptance
+    -   Description:        Verify that the login input field accepts a valid login.
+    -   Expected Result:    The entered login is accepted by the system.
+4   Test Case ID:           TC004
+    -   Title:              Verify Password Input Acceptance
+    -   Description:        Verify that the password input field accepts a valid password.
+    -   Expected Result:    The entered password is accepted by the system.
+5   Test Case ID:           TC005
+    -   Title:              Verify “Sign up” Button Display
+    -   Description:        Verify that the “Sign up” button is displayed on the login page.
+    -   Expected Result:    The “Sign up” button is displayed.

@@ -1,0 +1,23 @@
+Test Case: Verify Login Input and “Sign up” Button Display.
+Test Case ID: TC001.
+
+Title: Verify Login Input and “Sign up” Button Display.
+
+Preconditions:
+
+-   The user is on the login page (https://github.com/).
+
+Test Steps:
+
+1   Verify that the login input field is displayed.
+2   Enter a valid login (e.g., “testuser”).
+3   Verify that the password input field is displayed.
+4   Enter a valid password (e.g., “password123”).
+5   Verify that the “Sign up” button is displayed.
+6   Expected Results:
+
+1   The login input field is displayed.
+2   The entered login is accepted by the system.
+3   The password input field is displayed.
+4   The entered password is accepted by the system.
+5   The “Sign up” button is displayed on the page.

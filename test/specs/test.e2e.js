@@ -416,6 +416,7 @@
 // // x.skip(... - пропустити виконання блоку
 // // x.only(... - виконання лишу цього блоку
 // import { expect } from '@wdio/globals'
+// import { assert } from 'assert/strict'
 
 // describe('Webdriver_IO_test main page', () => {
 //     it('shot get element for certain elements', async () => {
@@ -438,3 +439,103 @@
 // });
 /////////////////////////////////////////////////////////////////////////////
 ////Lesson #17 Webdriver.io Project's structure
+// // wdio.conf.js
+/////////////////////////////////////////////////////////////////////////////
+////Lesson #18 Webdriver.io Test suite and test case
+// testcase.txt
+
+// Test Case: Перевірка логін-форми та кнопки “Sign up”
+// Test Case ID: TC001
+
+// Title: Перевірка введення даних для логіну та відображення кнопки “Sign up”
+
+// Preconditions:
+
+// Користувач знаходиться на сторінці логіну (https://github.com/).
+
+// Test Steps:
+
+// 1    Перевірити, чи відображається поле для введення логіну.
+// 2    Ввести валідний логін (наприклад, “testuser”).
+// 3    Перевірити, чи відображається поле для введення паролю.
+// 4    Ввести валідний пароль (наприклад, “password123”).
+// 5    Перевірити, чи відображається кнопка “Sign up”.
+
+// Expected Results:
+
+// 1    Поле для введення логіну відображається.
+// 2    Введений логін приймається системою.
+// 3    Поле для введення паролю відображається.
+// 4    Введений пароль приймається системою.
+// 5    Кнопка “Sign up” відображається на сторінці.
+
+
+// import { expect } from '@wdio/globals'
+// describe('GitHub Login Page', () => {
+//     it('should display login input and Sign up button', async () => {
+//         await browser.url('https://github.com/login');
+
+//         const loginInput = await browser.$('#login_field');
+//         const isLoginInputDisplayed = await loginInput.isDisplayed();
+//         await browser.pause(2000);
+//         expect(isLoginInputDisplayed).toBe(true);
+
+//         await loginInput.setValue('testuser');
+//         await browser.pause(2000);
+
+//         const passwordInput = await browser.$('#password');
+//         const isPasswordInputDisplayed = await passwordInput.isDisplayed();
+//         await browser.pause(2000);
+//         expect(isPasswordInputDisplayed).toBe(true);
+
+//         await passwordInput.setValue('password123');
+//         await browser.pause(2000);
+
+//         const signUpButton = await browser.$('a[href="/join?source=login"]');
+//         const isSignUpButtonDisplayed = await signUpButton.isDisplayed();
+//         await browser.pause(2000);
+//         expect(isSignUpButtonDisplayed).toBe(true);
+//     });
+// });
+
+
+
+// // testsuite.txt
+// Test Suite:                 GitHub Login Page
+
+// Test Suite ID:              TS001
+
+// Title:                      GitHub Login Page Test Suite
+
+// Description:                Цей тестовий набір призначений для перевірки функціональності сторінки логіну на GitHub.
+//                             Він включає кілька тестових випадків для забезпечення коректного відображення та роботи полів введення логіну та кнопки “Sign up”.
+
+// Preconditions:
+
+// -   ористувач знаходиться на сторінці логіну (https://github.com/login).
+
+// Test Cases:
+
+// 1   Test Case ID:           TC001
+//     -   Title:              Перевірка відображення поля введення логіну.
+//     -   Description:        Перевірити, чи відображається поле введення логіну на сторінці логіну.
+//     -   Expected Result:    Поле введення логіну відображається.
+// 2   Test Case ID:           TC002
+//     -   Title:              Перевірка відображення поля введення паролю.
+//     -   Description:        Перевірити, чи відображається поле введення паролю на сторінці логіну.
+//     -   Expected Result:    Поле введення паролю відображається.
+// 3   Test Case ID:           TC003
+//     -   Title:              Перевірка прийняття введення логіну.
+//     -   Description:        Перевірити, чи приймається введення валідного логіну у поле введення логіну.
+//     -   Expected Result:    Введений логін приймається системою.
+// 4   Test Case ID:           TC004
+//     -   Title:              Перевірка прийняття введення паролю
+//     -   Description:        Перевірити, чи приймається введення валідного паролю у поле введення паролю.
+//     -   Expected Result:    Введений пароль приймається системою.
+// 5   Test Case ID:           TC005
+//     -   Title:              Перевірка відображення кнопки “Sign up”.
+//     -   Description:        Перевірити, чи відображається кнопка “Sign up” на сторінці логіну.
+//     -   Expected Result:    нопка “Sign up” відображається.
+
+/////////////////////////////////////////////////////////////////////////////
+////Lesson #19 Webdriver.io Home work
