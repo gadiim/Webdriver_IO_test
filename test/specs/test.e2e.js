@@ -349,48 +349,92 @@
 //v// дочекатись (waitUntil()) на заголовок WebDriver Protocol
 //import { expect } from '@wdio/globals'
 
-describe('Webdriver.io HomeWork', () => {
-    it('should get html for certain elements', async () => {
-        await browser.url('https://webdriver.io');
+// describe('Webdriver.io HomeWork', () => {
+//     it('should get html for certain elements', async () => {
+//         await browser.url('https://webdriver.io');
 
-        const apiButton = await browser.$('nav a[href="/docs/api"]');   // зайти на Webdriver.io => API
-        await apiButton.click();
-        // await browser.pause(1000);
+//         const apiButton = await browser.$('nav a[href="/docs/api"]');   // зайти на Webdriver.io => API
+//         await apiButton.click();
+//         // await browser.pause(1000);
 
-        let currentUrl = await browser.getUrl();
-        // await browser.pause(1000);
-        console.log('currentUrl: ' + currentUrl);
+//         let currentUrl = await browser.getUrl();
+//         // await browser.pause(1000);
+//         console.log('currentUrl: ' + currentUrl);
 
-        const footer = await $('footer')                                // скрол до футера
-        // await browser.pause(1000);
-        await footer.scrollIntoView();
-        // await browser.pause(1000);
+//         const footer = await $('footer')                                // скрол до футера
+//         // await browser.pause(1000);
+//         await footer.scrollIntoView();
+//         // await browser.pause(1000);
 
-        const blogButton = await $('a[href=\'/blog\']');
-        let displayed = await blogButton.isDisplayed();
-        await browser.pause(1000);
-        console.log('blogButton is displayed: ' + displayed);                      // outputs: true   
+//         const blogButton = await $('a[href=\'/blog\']');
+//         let displayed = await blogButton.isDisplayed();
+//         await browser.pause(1000);
+//         console.log('blogButton is displayed: ' + displayed);                      // outputs: true   
 
-        const paginationLink = await $('.pagination-nav__label');
-        displayed = await paginationLink.isDisplayed();
-        console.log('pagination-nav__label is displayed: ' + displayed);            // outputs: true   
-        await browser.pause(1000);
+//         const paginationLink = await $('.pagination-nav__label');
+//         displayed = await paginationLink.isDisplayed();
+//         console.log('pagination-nav__label is displayed: ' + displayed);            // outputs: true   
+//         await browser.pause(1000);
 
-        let clickable = await paginationLink.isClickable();
-        console.log('pagination-nav__label is clickable: ' + clickable);                                  // outputs: true
-        await paginationLink.click();                                               // перейти (click) за посилання Protocol Commands
-        await browser.pause(2000);
+//         let clickable = await paginationLink.isClickable();
+//         console.log('pagination-nav__label is clickable: ' + clickable);                                  // outputs: true
+//         await paginationLink.click();                                               // перейти (click) за посилання Protocol Commands
+//         await browser.pause(2000);
 
-        currentUrl = await browser.getUrl();
-        console.log('currentUrl: ' + currentUrl);
+//         currentUrl = await browser.getUrl();
+//         console.log('currentUrl: ' + currentUrl);
 
-        await browser.waitUntil(async () => {
-            return await $('h2:first-of-type').isDisplayed();                       // дочекатись (waitUntil()) на заголовок WebDriver Protocol
-        }, 5000, 'Element is not displayed');
+//         await browser.waitUntil(async () => {
+//             return await $('h2:first-of-type').isDisplayed();                       // дочекатись (waitUntil()) на заголовок WebDriver Protocol
+//         }, 5000, 'Element is not displayed');
 
-        const headerText = await $('h2:first-of-type').getText();
-        console.log('Header text is: ' + headerText);
-    });
-});
+//         const headerText = await $('h2:first-of-type').getText();
+//         console.log('Header text is: ' + headerText);
+//     });
+// });
 /////////////////////////////////////////////////////////////////////////////
 ////Lesson #14 Webdriver.io Locators part 1
+// see selectors for web automation
+/////////////////////////////////////////////////////////////////////////////
+////Lesson #15 Webdriver.io Locators part 2
+////  x-pass contains
+////  //*[contains(text(),"x")]  пошук всіх текстових значень "x" що містяться у рядках, * - будь-який елемент
+////    @
+////    and
+////    or
+////  //*[contains(text(),"x") and @class='link ' and @href='https//:шосьтам']
+////  //*[contains(text(),"x") or @class='link ' and @href]
+/////////////////////////////////////////////////////////////////////////////
+////Lesson #16 Webdriver.io Assert function
+
+// // describe(... - виконати блок
+// // x.describe(... - пропустити виконання блоку
+// // x.describe(... - виконання лишу цього блоку
+
+// // it(... - виконати блок
+// // xit(... - пропустити виконання блоку
+// // x.skip(... - пропустити виконання блоку
+// // x.only(... - виконання лишу цього блоку
+// import { expect } from '@wdio/globals'
+
+// describe('Webdriver_IO_test main page', () => {
+//     it('shot get element for certain elements', async () => {
+//         await browser.url('https://webdriver.io');
+
+//         assert(1 === 1, '1 not equal 1');
+//         assert(1 === 'hello', '1 not equal hello');
+//     });
+// });
+
+// // // правильне виконання
+
+// describe('Webdriver_IO_test main page', () => {
+//     it('should get element for certain elements', async () => {
+//         await browser.url('https://webdriver.io');
+
+//         expect(1).toBe(1); // 1 is equal to 1
+//         expect(1).not.toBe('hello'); // 1 is not equal to 'hello'
+//     });
+// });
+/////////////////////////////////////////////////////////////////////////////
+////Lesson #17 Webdriver.io Project's structure
