@@ -14,7 +14,8 @@ Test Steps:
 3   Verify that the password input field is displayed.
 4   Enter a valid password (e.g., “password123”).
 5   Verify that the “Sign up” button is displayed.
-6   Expected Results:
+
+Expected Results:
 
 1   The login input field is displayed.
 2   The entered login is accepted by the system.
