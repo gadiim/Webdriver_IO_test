@@ -603,46 +603,114 @@
 //v// перевірити наявність напису 'Швидкий перехід:'
 //v// перейти на gameDev
 //v// перевірити наявність напису 'Радимо почитати' 
-import { expect } from '@wdio/globals'
-import MainPage from './main_page';
-import SalariesPage from './salaries_page';
-import JobsPage from './jobs_page';
-import GameDevPage from './gamedev_page';
+// import { expect } from '@wdio/globals'
+// import MainPage from './main_page';
+// import SalariesPage from './salaries_page';
+// import JobsPage from './jobs_page';
+// import GameDevPage from './gamedev_page';
 
-describe('Webdriver_IO_test homepage', () => {
-    it(' salaries page', async () => {
-        await browser.url('https://dou.ua/');                       // зайти на https://dou.ua/
-        await browser.pause(500);
+// describe('Webdriver_IO_test homepage', () => {
+//     it(' salaries page', async () => {
+//         await browser.url('https://dou.ua/');                       // зайти на https://dou.ua/
+//         await browser.pause(500);
 
-        await MainPage.clickOnSalariesBtn();                        // зайти у вкладку 'зарплати'
-        await browser.pause(500);
+//         await MainPage.clickOnSalariesBtn();                        // зайти у вкладку 'зарплати'
+//         await browser.pause(500);
 
-        const salariesText = await SalariesPage.searchedSalariesText;
-        expect(salariesText).toHaveValue("I Квартиль");                    // перевірити наявність напису 'квартиль'
-        console.log('salaries page / searched text is : ' + await salariesText.getText());
-    });
+//         const salariesText = await SalariesPage.searchedSalariesText;
+//         expect(salariesText).toHaveValue("I Квартиль");                    // перевірити наявність напису 'квартиль'
+//         console.log('salaries page / searched text is : ' + await salariesText.getText());
+//     });
 
-    it(' jobs page', async () => {
+//     it(' jobs page', async () => {
 
-        await MainPage.clickOnJobsBtn();                            // зайти у вкладку 'робота'
-        await browser.pause(500);
+//         await MainPage.clickOnJobsBtn();                            // зайти у вкладку 'робота'
+//         await browser.pause(500);
 
-        const jobsButton = await JobsPage.isDisplayedSearchedButton();   // перевірити видимість кнопки 'знайти'
-        console.log('jobs page / searched button is : ' + jobsButton);
-        JobsPage.clickOnSearchedButton();                                   // натиснути кнопку 'знайти'
-        await browser.pause(500);
+//         const jobsButton = await JobsPage.isDisplayedSearchedButton();   // перевірити видимість кнопки 'знайти'
+//         console.log('jobs page / searched button is : ' + jobsButton);
+//         JobsPage.clickOnSearchedButton();                                   // натиснути кнопку 'знайти'
+//         await browser.pause(500);
 
-        const jobsText = await JobsPage.getTexSearchedJobsText();
-        expect(jobsText).toHaveText("Швидкий перехід: ");                    // перевірити наявність напису 'Швидкий перехід: '
-        console.log('jobs page / searched text is : ' + jobsText);
-    });
+//         const jobsText = await JobsPage.getTexSearchedJobsText();
+//         expect(jobsText).toHaveText("Швидкий перехід: ");                    // перевірити наявність напису 'Швидкий перехід: '
+//         console.log('jobs page / searched text is : ' + jobsText);
+//     });
 
-    it(' gamedev page', async () => {
-        await MainPage.clickOngameDevBtn();                            // перейти на gameDev
-        await browser.pause(500);
+//     it(' gamedev page', async () => {
+//         await MainPage.clickOngameDevBtn();                            // перейти на gameDev
+//         await browser.pause(500);
 
-        const gameDevText = await GameDevPage.getTexSearchedGameDevText();
-        expect(gameDevText).toHaveValue("Радимо почитати");                    // перевірити наявність напису 'Радимо почитати'
-        console.log('gamedev page / searched text is : ' + gameDevText);
-    });
-});
+//         const gameDevText = await GameDevPage.getTexSearchedGameDevText();
+//         expect(gameDevText).toHaveValue("Радимо почитати");                    // перевірити наявність напису 'Радимо почитати'
+//         console.log('gamedev page / searched text is : ' + gameDevText);
+//     });
+// });
+/////////////////////////////////////////////////////////////////////////////
+////Lesson #24 Webdriver.io Page Object part 3
+// переваги патрерна Page Object:
+// - Розділення логіки роботи та представлення: 
+// Page Object дозволяє відокремити логіку тестів від реалізації веб-сторінок. 
+// Це робить код тестів більш чистим і зрозумілим.
+// - Зменшення дублювання коду:
+// Оскільки всі елементи та дії на сторінці описані в одному місці (класі Page Object),
+// це зменшує дублювання коду і полегшує його підтримку.
+// - Легкість у підтримці: При змінах у інтерфейсі веб-додатку, 
+// які не зачіпають логіку, потрібно змінити лише відповідний Page Object, 
+// а не всі тести, що використовують цю сторінку.
+// - Покращення читабельності тестів: Тести стають більш читабельними, 
+// оскільки вони містять лише бізнес-логіку, а не деталі реалізації взаємодії 
+// з елементами сторінки.
+// - Повторне використання коду: Page Object дозволяє повторно використовувати 
+// код для різних тестів, що зменшує кількість помилок і спрощує процес написання
+// нових тестів.
+/////////////////////////////////////////////////////////////////////////////
+////Lesson #24 Webdriver.io Final Home Project
+// // testcase 1
+// // зайти на https://github.com/
+// // натиснути кнопку 'Sign up'
+// // дочекатись перший 'Input'
+// // перевірити чи існує заголовний текст на 'Input'
+// // в 'Input' ввести email (example@mail.com)
+// // натиснути кнопку 'Continue'
+// // в наступний 'Input' ввести password (superpassword)
+// // натиснути кнопку 'Continue'
+// // в наступний 'Input' ввести username (superusername)
+// // натиснути кнопку 'Continue'
+// // в наступний 'Input' ввести підтвердження (y)
+// // натиснути кнопку 'Continue'
+// // finish 1
+// // testcase 2
+// // зайти на https://github.com/
+// // scroll down to 'Over 100 million developers call GitHub home3'
+// // перевірити 'Start a free enterprise trial' isVisible
+// // перейти за посиланням
+// // перевірити чи існує заголовний текст 'Pick your trial plan'
+// // перейти за посиланням 'Enterprise Cloud'
+// // finish 2
+// // testcase 3
+// // зайти на https://github.com/
+// // scroll into view
+// // перевірити 'Subscribe' isClickable
+// // натиснути кнопку 'Subscribe'
+// // перевірити свою присутність на іншому домені https://resources.github.com/newsletter/
+// // перевірити чи існує заголовний текст 'Subscribe to our developer newsletter'
+// // в 'Work Email *' ввести email (example@mail.com)
+// // в 'Country *' select tag ввести country ( ) 
+// // checkbox 
+// // натиснути кнопку 'Subscribe'
+// // перевірити чи існує заголовний текст 'Thanks for subscribing!'
+// // finish 3
+// // testcase 4
+// // зайти на https://github.com/
+// // обрати 'Search'
+// // ввести 'act' (ввести з клавіатури див hot keys)
+// // перевірити чи є 'act' в результатах пошуку
+// // finish 4
+// // testcase 5
+// // зайти на https://github.com/
+// // перейти за посиланням 'Pricing'
+// // перевірити чи існує заголовний текст 'Get the complete developer platform.'
+// // scroll to 'Compare all features'
+// // перевірити чи існує заголовний текст 'Compare features'
+// // finish 5
