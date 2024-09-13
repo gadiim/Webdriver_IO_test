@@ -90,7 +90,6 @@
 //         await loginButton.click()
 //         await browser.pause(4000)
 
-//         await expect(input).toHaveTitle('hello123')
 //     });
 // });
 /////////////////////////////////////////////////////////////////////////////
@@ -539,3 +538,32 @@
 
 /////////////////////////////////////////////////////////////////////////////
 ////Lesson #19 Webdriver.io Home work
+// testcase.txt
+// testіsuite.txt
+/////////////////////////////////////////////////////////////////////////////
+////Lesson #20 Webdriver.io TestRail
+// screenshots/screenshot_lesson_20.png
+/////////////////////////////////////////////////////////////////////////////
+////Lesson #21 Webdriver.io Page Object part intro
+/////////////////////////////////////////////////////////////////////////////
+////Lesson #22 Webdriver.io Page Object part 1
+
+/////////////////////////////////////////////////////////////////////////////
+////Lesson #23 Webdriver.io Page Object part 2
+import { expect } from '@wdio/globals'
+import LoginPage from './main_page';
+describe('Webdriver_IO_test main page', () => {
+    it(' should show addValue command', async () => {
+        await browser.url('https://the-internet.herokuapp.com/login');
+        await browser.pause(2000);
+        await LoginPage.setUserNameInput(123);
+        await browser.pause(2000);
+        await LoginPage.username.addValue('hello');
+        await browser.pause(2000);
+        await LoginPage.setPasswordInput('superpass');
+        await browser.pause(2000);
+        await LoginPage.clickOnLoginButton();
+        
+        await expect(LoginPage.username).toHaveValue('123hello');
+    });
+});
