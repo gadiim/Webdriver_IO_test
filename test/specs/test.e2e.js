@@ -547,23 +547,102 @@
 ////Lesson #21 Webdriver.io Page Object part intro
 /////////////////////////////////////////////////////////////////////////////
 ////Lesson #22 Webdriver.io Page Object part 1
+// import { expect } from '@wdio/globals'
+// import LoginPage from './main_page';
+// describe('Webdriver_IO_test main page', () => {
+//     it(' should show addValue command', async () => {
+//         await browser.url('https://the-internet.herokuapp.com/login');
+//         await browser.pause(2000);
+//         await LoginPage.setUserNameInput(123);
+//         await browser.pause(2000);
+//         await LoginPage.username.addValue('hello');
+//         await browser.pause(2000);
+//         await LoginPage.setPasswordInput('superpass');
+//         await browser.pause(2000);
+//         await LoginPage.clickOnLoginButton();
 
+//         await expect(LoginPage.username).toHaveValue('123hello');
+//     });
+// });
 /////////////////////////////////////////////////////////////////////////////
 ////Lesson #23 Webdriver.io Page Object part 2
+// import { expect } from '@wdio/globals'
+// import MainPage from './main_page';
+// import GameDevPage from './gamedev_page';
+// import GameDeveTopRatesPage from './gamedev_page';
+
+// describe('Webdriver_IO_test main page', () => {
+//         it(' done', async () => {
+//             await browser.url('https://dou.ua/');
+
+//             await MainPage.clickOnBandBtn();
+//             await browser.pause(1000);
+
+//             await MainPage.clickOnForumBtn();
+//             await browser.pause(1000);
+
+//             await MainPage.clickOnGameDaveBtn();
+//             await browser.pause(1000);
+
+//             expect (GameDevPage.companyGameDevsRankLink).toBeClickable();
+
+//             await GameDevPage.clickOnTopGamesRateLink();
+
+//             expect (GameDeveTopRatesPage.title).toHaveValue("Матеріали на тему «топ ігор місяця»")
+
+//     });
+// });
+
+//// Home work
+//v// зайти на https://dou.ua/
+//v// зайти у вкладку 'зарплати'
+//v// перевірити наявність напису 'квартиль'
+//v// зайти у вкладку 'робота'
+//v// перевірити видимість кнопки 'знайти'
+//v// натиснути кнопку 'знайти'
+//v// перевірити наявність напису 'Швидкий перехід:'
+//v// перейти на gameDev
+//v// перевірити наявність напису 'Радимо почитати' 
 import { expect } from '@wdio/globals'
-import LoginPage from './main_page';
-describe('Webdriver_IO_test main page', () => {
-    it(' should show addValue command', async () => {
-        await browser.url('https://the-internet.herokuapp.com/login');
-        await browser.pause(2000);
-        await LoginPage.setUserNameInput(123);
-        await browser.pause(2000);
-        await LoginPage.username.addValue('hello');
-        await browser.pause(2000);
-        await LoginPage.setPasswordInput('superpass');
-        await browser.pause(2000);
-        await LoginPage.clickOnLoginButton();
-        
-        await expect(LoginPage.username).toHaveValue('123hello');
+import MainPage from './main_page';
+import SalariesPage from './salaries_page';
+import JobsPage from './jobs_page';
+import GameDevPage from './gamedev_page';
+
+describe('Webdriver_IO_test homepage', () => {
+    it(' salaries page', async () => {
+        await browser.url('https://dou.ua/');                       // зайти на https://dou.ua/
+        await browser.pause(500);
+
+        await MainPage.clickOnSalariesBtn();                        // зайти у вкладку 'зарплати'
+        await browser.pause(500);
+
+        const salariesText = await SalariesPage.searchedSalariesText;
+        expect(salariesText).toHaveValue("I Квартиль");                    // перевірити наявність напису 'квартиль'
+        console.log('salaries page / searched text is : ' + await salariesText.getText());
+    });
+
+    it(' jobs page', async () => {
+
+        await MainPage.clickOnJobsBtn();                            // зайти у вкладку 'робота'
+        await browser.pause(500);
+
+        const jobsButton = await JobsPage.isDisplayedSearchedButton();   // перевірити видимість кнопки 'знайти'
+        console.log('jobs page / searched button is : ' + jobsButton);
+        JobsPage.clickOnSearchedButton();                                   // натиснути кнопку 'знайти'
+        await browser.pause(500);
+
+        const jobsText = await JobsPage.getTexSearchedJobsText();
+        expect(jobsText).toHaveText("Швидкий перехід: ");                    // перевірити наявність напису 'Швидкий перехід: '
+        console.log('jobs page / searched text is : ' + jobsText);
+    });
+
+    it(' gamedev page', async () => {
+        await MainPage.clickOngameDevBtn();                            // перейти на gameDev
+        await browser.pause(500);
+
+        const gameDevText = await GameDevPage.getTexSearchedGameDevText();
+        expect(gameDevText).toHaveValue("Радимо почитати");                    // перевірити наявність напису 'Радимо почитати'
+        console.log('gamedev page / searched text is : ' + gameDevText);
     });
 });
