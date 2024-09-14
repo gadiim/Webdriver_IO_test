@@ -421,7 +421,7 @@
 //     it('shot get element for certain elements', async () => {
 //         await browser.url('https://webdriver.io');
 
-//         assert(1 === 1, '1 not equal 1');
+//         assert(1 === 1, '1 is equal 1');
 //         assert(1 === 'hello', '1 not equal hello');
 //     });
 // });
